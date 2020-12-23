@@ -1,5 +1,7 @@
 name: plants-app-staging
-on: [push]
+on: 
+  push: 
+    branches: [ staging ]
 jobs:
   run:
     environment: staging
