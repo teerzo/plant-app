@@ -1,8 +1,10 @@
-name: plants-app-staging
-on: [push]
+name: plants-app-develop
+on: 
+  push: 
+    branches: [ develop ]
 jobs:
   run:
-    environment: staging
+    environment: develop
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
