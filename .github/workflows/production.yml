@@ -1,5 +1,7 @@
-name: Example workflow for S3 Deploy
-on: [push]
+name: plants-app-production
+on: 
+  push: 
+    branches: [ production ]
 jobs:
   run:
     environment: production
