@@ -1,17 +1,13 @@
+// Components
+import Router from 'components/router';
+// Styles
 import './App.scss';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <div className="mask"> </div>
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p> Jungle in my plants
-          <br/> coming soon 
-        </p>
-      </header>
+      <Router />
     </div>
   );
 }
-
-export default App;
