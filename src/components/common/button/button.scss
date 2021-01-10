@@ -1,0 +1,72 @@
+.component-button {
+    // border-width: 1px;
+    // border-style: solid;
+    // border-color: #212931;
+
+    box-shadow: rgb(33, 41, 49) 0px 0px 0px 2px inset;
+    color: rgb(33, 41, 49);
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 17.0667px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: 900;
+    height: 64px;
+    letter-spacing: 1.28px;
+    line-height: 64px;
+    width: 161.047px;
+
+    appearance: none;
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgb(33, 41, 49);
+    border-radius: 0px;
+    text-align: center;
+
+    padding: 0px 40px;
+    white-space: nowrap;
+
+    &:hover {
+        color: #00FF00;
+    }
+
+    // border-image-outset 0
+    // border-image-repeat stretch
+    // border-image-slice 100%
+    // border-image-source none
+    // border-image-width 1
+    // border-right-style none
+    // border-right-width 0px
+    // border-top-color rgb(33, 41, 49)
+    // border-top-left-radius 0px
+    // border-top-right-radius 0px
+    // border-top-style none
+    // border-top-width 0px
+    // box-sizing border-box
+
+    // list-style-image none
+    // list-style-position outside
+    // list-style-type none
+
+    // text-decoration-color rgb(33, 41, 49)
+    // text-decoration-line none
+    // text-decoration-style solid
+    // text-size-adjust 100%
+    // text-transform uppercase
+    // transition-delay 0s, 0s, 0s
+    // transition-duration 0.2s, 0.2s, 0.2s
+    // transition-property background-color, box-shadow, color
+    // transition-timing-function ease-in-out, ease-in-out, ease-in-out
+    // ease-in-out, ease-in-out, ease-in-out input[type="submit"], input[type="reset"], input[type="button"], button, .button
+    // ease-in-out, ease-in-out, ease-in-out, ease-in-out a
+    // vertical-align baseline
+    a {
+        font-size: 18px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
