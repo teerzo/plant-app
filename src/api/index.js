@@ -13,6 +13,5 @@ else {
 
 export const fetchPlants = () => axios.get(`${url}/plants`);
 export const createPlant = (newPlant) => axios.post(`${url}/plants`, newPlant);
-export const likePlant = (id) => axios.patch(`${url}/${id}/likePlant`);
-export const updatePlant = (id, updatedPlant) => axios.patch(`${url}/${id}`, updatedPlant);
-export const deletePlant = (id) => axios.delete(`${url}/${id}`);
+export const updatePlant = (id, updatedPlant) => axios.patch(`${url}/plants/${id}`, updatedPlant);
+export const deletePlant = (id) => axios.delete(`${url}/plants/${id}`);
