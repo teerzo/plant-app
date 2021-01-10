@@ -1,0 +1,1 @@
+export {default} from './route-link.js';
