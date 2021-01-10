@@ -1,5 +1,4 @@
-// import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../../constants/actionTypes';
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
 
 import * as api from '../api/index.js';
 
@@ -30,16 +29,6 @@ export const updatePlant = (id, plant) => async (dispatch) => {
     const { data } = await api.updatePlant(id, plant);
 
     dispatch({ type: UPDATE, payload: data });
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-export const likePlant = (id) => async (dispatch) => {
-  try {
-    const { data } = await api.likePlant(id);
-
-    dispatch({ type: LIKE, payload: data });
   } catch (error) {
     console.log(error.message);
   }
