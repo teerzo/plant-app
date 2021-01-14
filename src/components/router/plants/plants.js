@@ -13,7 +13,7 @@ import Input from 'components/common/input';
 import Button from 'components/common/button';
 // Local 
 import PlantCard from 'components/plantCard';
-
+import PlantForm from 'components/plant-form';
 // actions
 import { getPlants, createPlant, updatePlant } from 'actions/plants';
 
@@ -49,6 +49,8 @@ function PlantsList(props) {
     const [filtered, setFiltered] = useState([]);
     const currentId = 0;
 
+    const [form, setForm] = useState(false);
+
     useEffect(() => {
         dispatch(getPlants());
     }, [currentId, dispatch]);
@@ -65,8 +67,13 @@ function PlantsList(props) {
 
     function onSearchChange(value) {
         setSearch(value);
+        // clearSearch()
     }
- 
+
+    function showForm() {
+        setForm(true);
+    }
+
     function submitPlant() {
 
         const name = search;
@@ -152,23 +159,25 @@ function PlantsList(props) {
             <div className="search">
 
             </div>
-            <div className="plants" style={style}>
-                {filtered && filtered.length > 0 ?
-                    filtered.map((item, key) => {
+            {filtered && filtered.length > 0 ?
+                <div className="plants" style={style}>
+                    {filtered.map((item, key) => {
                         return (
                             <PlantCard key={key} item={item} />
                         )
-                    })
-                    :
-                    <div className="group center">
-                        <p> No matching "{search}"</p>
-                        {/* <Button variant="contained" onClick={props.handleModalOpen}> Add Plant</Button> */}
-                        <Button variant="contained" onClick={submitPlant}> Add Plant</Button>
+                    })}
+                </div>
+                :
+                <div className="group center">
+                    <p> No matching "{search}"</p>
+                    {/* <Button variant="contained" onClick={props.handleModalOpen}> Add Plant</Button> */}
+                    <Button variant="contained" onClick={showForm}> Add Plant</Button>
 
-                    </div>
-                }
-
-            </div>
+                </div>
+            }
+            {form ?
+               <PlantForm name={search}/>
+                : null}
         </div>
     )
 }
@@ -184,7 +193,7 @@ function Filters({ clearSearch, ...props }) {
 
     function clearSearch() {
         setSearch('');
-        if( props.onSearchChange) {
+        if (props.onSearchChange) {
             props.onSearchChange('');
         }
     }
@@ -192,7 +201,7 @@ function Filters({ clearSearch, ...props }) {
         console.log('onSearchChange', event.target);
         setSearch(event.target.value);
 
-        if( props.onSearchChange) {
+        if (props.onSearchChange) {
             props.onSearchChange(event.target.value);
         }
     }

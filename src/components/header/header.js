@@ -35,6 +35,7 @@ export default function Header(props) {
                 </div>
             </Link>
             <Link className="link" noBorder path="/plants" location={location}> Plants </Link>
+            <Link className="link" noBorder path="/collection" location={location}> Collection </Link>
             <Link className="link" noBorder path="/about" location={location}> About </Link>
             {/* <Link path="/children" location={location}> My Kids </Link> */}
             {/* <Link path="/wishlist" location={location}> Kids i plan to steal </Link> */}
