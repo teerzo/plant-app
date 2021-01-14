@@ -3,10 +3,6 @@
   box-sizing: border-box;
 }
 
-body {
-  
-}
-
 .App {
   position: absolute;
   top: 0px;
@@ -27,6 +23,7 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
+  height: 100%;
   /* background-color: black; */
   background-image: url("./images/monstera-bg2.png");
   background-size: 500px;

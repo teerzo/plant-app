@@ -34,10 +34,10 @@ export default function Header(props) {
     useEffect(() => {
         console.log('location', location);
         console.log('last', lastLocation);
-        if( !lastLocation || lastLocation.pathname !== location.pathname ) {
-           hideMenu();
+        if (!lastLocation || lastLocation.pathname !== location.pathname) {
+            hideMenu();
         }
-    },[location]);
+    }, [location]);
 
     function showMenu() {
         setMenu(true);
@@ -80,6 +80,7 @@ export default function Header(props) {
                     :
                     <div className="links">
                         <Link className="link" noBorder path="/plants" location={location}> Plants </Link>
+                        <Link className="link" noBorder path="/collection" location={location}> Collection </Link>
                         <Link className="link" noBorder path="/about" location={location}> About </Link>
                         <div className="grow"> </div>
                     </div>
@@ -91,6 +92,7 @@ export default function Header(props) {
                 <div className="links-parent">
                     <div className="links">
                         <Link className="link" noBorder path="/plants" location={location}> Plants </Link>
+                        <Link className="link" noBorder path="/collection" location={location}> Collection </Link>
                         <Link className="link" noBorder path="/about" location={location}> About </Link>
                         <div className="grow"> </div>
                     </div>
