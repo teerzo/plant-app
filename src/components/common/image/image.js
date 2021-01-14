@@ -13,8 +13,8 @@ export default function Image({ src, width, height, border, text, ...props }) {
         // {'noborder': props.noBorder }
     )
     const style = {
-        width: width,
-        height: height
+        width: width ? width : '100%',
+        height: height ? height : '100%'
     }
     const imgStyle = {
         backgroundImage: `url(${src})`,

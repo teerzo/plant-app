@@ -8,6 +8,7 @@ import Header from 'components/header';
 // Routes
 import Home from './home';
 import About from './about';
+import Plants from './plants';
 
 export default function Router() {
     return (
@@ -18,6 +19,9 @@ export default function Router() {
 
                     <Route path="/about">
                         <About />
+                    </Route>
+                    <Route path="/plants">
+                        <Plants />
                     </Route>
                     <Route path="/">
                         <Home />
