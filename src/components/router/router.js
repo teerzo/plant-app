@@ -7,6 +7,7 @@ import Header from 'components/header';
 
 // Routes
 import Home from './home';
+import Collection from './collection';
 import About from './about';
 import Plants from './plants';
 
@@ -16,12 +17,14 @@ export default function Router() {
             <Header />
             <div className="container">
                 <Switch>
-
-                    <Route path="/about">
-                        <About />
-                    </Route>
                     <Route path="/plants">
                         <Plants />
+                    </Route>
+                    <Route path="/collection">
+                        <Collection />
+                    </Route>
+                    <Route path="/about">
+                        <About />
                     </Route>
                     <Route path="/">
                         <Home />
