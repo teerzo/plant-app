@@ -1,0 +1,20 @@
+
+$primary: #4ee24e;
+
+.common-route-link {
+    text-decoration: none;
+    margin-right: 10px;
+    color: #000000;
+
+    border-bottom: 1px solid transparent;
+    &.active {
+        color: $primary;
+        border-color:  $primary;
+        // border-bottom: 1px solid #ffffff;
+        // border-bottom: 1px solid $primary;
+    }
+    &.noborder {
+        // border-bottom: 1px solid transparent;
+        border-color: transparent;
+    }
+}
