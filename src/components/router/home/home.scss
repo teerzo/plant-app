@@ -1,0 +1,19 @@
+
+
+.route-home {
+    height: 100%;
+    text-align: center;
+    // height: 100vh;
+    // height: calc(100vh - 4rem);
+
+
+
+    p {
+        margin: 0px;
+    }
+
+    .overlay {
+        padding: 10px;
+        background-color: rgba($color: #ffffff, $alpha: 0.9);
+    }
+}
