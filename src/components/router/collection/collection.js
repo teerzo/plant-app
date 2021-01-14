@@ -18,7 +18,7 @@ export default function Collection(props) {
                 <div className="title">
                     <h3> My Collection </h3>
                 </div>
-                
+                <div className=""> <p> Coming soon </p> </div>
             </div>
         </div>
     );
