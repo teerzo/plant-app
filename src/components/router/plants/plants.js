@@ -25,18 +25,14 @@ import './plants.scss';
 export default function Home(props) {
 
     const cmpClasses = cx(
-        'route-home',
+        'route-plants',
     )
 
     return (
         <div className={cmpClasses}>
-            {/* <div className="overlay full-height">
-                <div className="flex-column full-height">
-                    <p> Jungle in my plants <br /> coming soon </p>
-                </div>
-            </div> */}
-
-            <PlantsList />
+            <div className="overlay">
+                <PlantsList />
+            </div>
         </div>
     );
 }
@@ -176,7 +172,7 @@ function PlantsList(props) {
                 </div>
             }
             {form ?
-               <PlantForm name={search}/>
+                <PlantForm name={search} />
                 : null}
         </div>
     )
