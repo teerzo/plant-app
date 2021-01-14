@@ -1,8 +1,14 @@
 .route-about {
-    // height: 100%;
     h1,
     h2,
     h3 {
         margin: 0px;
+    }
+    p {
+        font-size: 18px;
+        margin: 0px;
+    }
+    .overlay {
+        padding: 10px;
     }
 }
