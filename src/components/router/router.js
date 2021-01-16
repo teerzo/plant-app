@@ -8,6 +8,7 @@ import Header from 'components/header';
 // Routes
 import Login from './login';
 import Logout from './logout';
+import Register from './register';
 
 import Home from './home';
 import Collection from './collection';
@@ -25,6 +26,9 @@ export default function Router() {
                     </Route>
                     <Route path="/logout">
                         <Logout />
+                    </Route>
+                    <Route path="/register">
+                        <Register />
                     </Route>
 
                     <Route path="/plants">

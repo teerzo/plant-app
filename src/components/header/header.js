@@ -90,10 +90,11 @@ function MobileHeader({ location, ...props }) {
                     <div className="mobile-links">
                         <div className="login flex-row">
                             <ButtonLink path="/login" className="grow" location={location}> Login </ButtonLink>
-                            <ButtonLink path="/login" className="grow" location={location}> Sign up </ButtonLink>
+                            <ButtonLink path="/register" className="grow" location={location}> Sign up </ButtonLink>
 
                         </div>
                         <div className="links">
+                            <Link className="link" noBorder path="/" location={location}> Home </Link>
                             <Link className="link" noBorder path="/plants" location={location}> Plants </Link>
                             <Link className="link" noBorder path="/collection" location={location}> Collection </Link>
                             <Link className="link" noBorder path="/about" location={location}> About </Link>
@@ -134,7 +135,7 @@ function DesktopHeader({ location, ...props }) {
             <div className="grow"> </div>
             <div className="login">
                 <ButtonLink path="/login" className="grow" location={location}> Login </ButtonLink>
-                <ButtonLink path="/login" className="grow" location={location}> Sign up </ButtonLink>
+                <ButtonLink path="/register" className="grow" location={location}> Sign up </ButtonLink>
             </div>
         </div>
     )

@@ -19,7 +19,7 @@ export default function CmpInputGroup({ label, flex, align, ...props }) {
     return (
         <div className={componentClasses}>
             <Label align={align}> {label} </Label>
-            <Input className={componentClasses} {...props} />
+            <Input {...props} />
         </div>
     );
 }
