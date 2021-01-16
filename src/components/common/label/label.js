@@ -3,18 +3,18 @@ import cx from 'classnames';
 
 import './label.scss';
 
-export default function ComponentLabel(props) {
+export default function ComponentLabel({ children, align, ...props}) {
 
 
     const componentClasses = cx(
-        'component-button',
-
+        'component-label',
+        `align-${align}`
         // {'active': props.location && props.path === props.location.pathname ? true : false }
     )
 
     return (
-        <div className={componentClasses}>
-            {props.children}
-        </div>
+        <label className={componentClasses} {...props}>
+            {children}
+        </label>
     );
 }
