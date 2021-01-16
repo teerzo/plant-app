@@ -10,6 +10,7 @@ import Login from './login';
 import Logout from './logout';
 
 import Home from './home';
+import Collection from './collection';
 import About from './about';
 import Plants from './plants';
 
@@ -26,11 +27,14 @@ export default function Router() {
                         <Logout />
                     </Route>
 
-                    <Route path="/about">
-                        <About />
-                    </Route>
                     <Route path="/plants">
                         <Plants />
+                    </Route>
+                    <Route path="/collection">
+                        <Collection />
+                    </Route>
+                    <Route path="/about">
+                        <About />
                     </Route>
                     <Route path="/">
                         <Home />

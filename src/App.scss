@@ -14,19 +14,24 @@
   min-width: 320px;
   min-height: 600px;
   padding-top: 60px;
+
+  background-image: url("./images/monstera-bg2.png");
+  background-size: 500px;
+  background-repeat: repeat;
 }
 .mask {
-  position: fixed;
-  z-index: -1;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  // position: fixed;
+  // z-index: -1;
+  // left: 0;
+  // top: 0;
+  // right: 0;
+  // bottom: 0;
+  // height: 100%;
   /* background-color: black; */
   background-image: url("./images/monstera-bg2.png");
   background-size: 500px;
   background-repeat: repeat;
-  opacity: 0.5;
+  // opacity: 0.5;
 }
 
 @keyframes App-logo-spin {
@@ -89,4 +94,8 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+.overlay {
+  background-color: rgba($color: #ffffff, $alpha: 0.9);
+  margin-bottom: 20px;
 }
