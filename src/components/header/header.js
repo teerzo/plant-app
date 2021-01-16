@@ -4,6 +4,7 @@ import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import cx from 'classnames';
 import { FaTimes, FaBars } from "react-icons/fa";
 // Common components
+import ButtonLink from 'components/common/button-link';
 import Link from 'components/common/route-link';
 import Image from 'components/common/image';
 import Icon from 'components/common/icon';
@@ -66,7 +67,7 @@ function MobileHeader({ location, ...props }) {
         setMenu(false)
     }
     return (
-        <div className="inner">
+        <div className="mobile inner">
             {menu ?
                 <Icon className="close" onClick={hideMenu}>
                     <FaTimes />
@@ -86,11 +87,18 @@ function MobileHeader({ location, ...props }) {
             </div>
             {menu ?
                 <div className="links-parent">
-                    <div className="links">
-                        <Link className="link" noBorder path="/plants" location={location}> Plants </Link>
-                        <Link className="link" noBorder path="/collection" location={location}> Collection </Link>
-                        <Link className="link" noBorder path="/about" location={location}> About </Link>
-                        <div className="grow"> </div>
+                    <div className="mobile-links">
+                        <div className="login flex-row">
+                            <ButtonLink path="/login" className="grow" location={location}> Login </ButtonLink>
+                            <ButtonLink path="/login" className="grow" location={location}> Sign up </ButtonLink>
+
+                        </div>
+                        <div className="links">
+                            <Link className="link" noBorder path="/plants" location={location}> Plants </Link>
+                            <Link className="link" noBorder path="/collection" location={location}> Collection </Link>
+                            <Link className="link" noBorder path="/about" location={location}> About </Link>
+                            <div className="grow"> </div>
+                        </div>
                     </div>
                 </div>
                 : null
@@ -111,7 +119,7 @@ function DesktopHeader({ location, ...props }) {
     }, [location]);
 
     return (
-        <div className="flex-row inner">
+        <div className="desktop flex-row inner">
             <div className="title">
                 <Link path="/">
                     <div className="flex-row">
@@ -125,7 +133,8 @@ function DesktopHeader({ location, ...props }) {
             </div>
             <div className="grow"> </div>
             <div className="login">
-                <Link className="link" noBorder path="/login" location={location}> Login </Link>
+                <ButtonLink path="/login" className="grow" location={location}> Login </ButtonLink>
+                <ButtonLink path="/login" className="grow" location={location}> Sign up </ButtonLink>
             </div>
         </div>
     )

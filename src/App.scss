@@ -3,11 +3,13 @@
 }
 
 .App {
-  position: absolute;
+  position: fixed;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
+  height: 100%;
+  overflow-y: scroll;
   // overflow: hidden;
   min-width: 320px;
   min-height: 600px;
@@ -76,6 +78,9 @@
   }
   &.align-right {
     align-items: flex-end;
+  }
+  .grow {
+    flex-grow: 1;
   }
 }
 .full-height {
