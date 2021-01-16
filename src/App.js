@@ -6,7 +6,7 @@ import './App.scss';
 export default function App() {
   return (
     <div className="App">
-      <div className="mask"> </div>
+      {/* <div className="mask"> </div> */}
       <Router />
     </div>
   );

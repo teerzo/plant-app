@@ -6,11 +6,6 @@
     p {
         margin: 0px;
     }
-
-    .overlay {
-        padding: 10px;
-        background-color: rgba($color: #ffffff, $alpha: 0.9);
-    }
 }
 
 .cmp-plants-list {
@@ -45,8 +40,9 @@
 
 .cmp-filters {
     // outline: red 1px solid;
-    background-color: #ffffff;
-    max-width: 400px;
+    background-color: #eeeeee;
+    // border: 1px solid red;
+    // max-width: 400px;
     // width: auto;
 
     // max-width: auto;

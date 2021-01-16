@@ -11,6 +11,7 @@ export const getPlants = () => async (dispatch) => {
     dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {
     console.log(error.message);
+    catchError(error);
   }
 };
 
@@ -43,3 +44,10 @@ export const deletePlant = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+function catchError(error) {
+  console.log('catchError', error);
+  if( error.message === 'Network Error') {
+    window.alert('Failed to connect to server, please try again');
+  }
+}
