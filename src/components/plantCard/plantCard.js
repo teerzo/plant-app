@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { deletePlant } from '../../actions/plants';
 
+import RouteLink from 'components/common/route-link';
 import Image from 'components/common/image';
 import Icon from 'components/common/icon';
 import './plantCard.scss';
@@ -11,6 +12,7 @@ import './plantCard.scss';
 import { BsDropletFill, BsDropletHalf, BsDroplet } from 'react-icons/bs';
 
 export default function PlantTile({ item, ...props }) {
+    const route = `/plants?${item._id}`;
 
     const currentId = item._id;
 
@@ -39,23 +41,26 @@ export default function PlantTile({ item, ...props }) {
         item.rarity ? item.rarity.toLowerCase() : item.rarity
     )
 
-  
+
     return (
         <div className={cmpClasses}>
-            <div className="delete" onClick={removePlant}>
-                X
-            </div>
+
+            <div className="delete" onClick={removePlant}> X </div>
 
 
             <div className="title">
                 {item.name}
             </div>
             <div className="image-parent">
-                <Image src={image}
+                <RouteLink path={route}>
+                    <Image src={image}
+
                     // text="background text here" 
                     // height={200}
-                // border={true} 
-                />
+                    // border={true} 
+                    />
+                </RouteLink>
+
             </div>
 
             <div className={typeClasses}>
@@ -68,8 +73,6 @@ export default function PlantTile({ item, ...props }) {
                 <Slider color="#ffe734" value={item.sun} text={`Sun ${item.sun}`} item={item}/> 
                 <Slider color="#31d72f" value={item.price} text={`Price ${item.price}`} item={item}/> 
             </div> */}
-
-
 
 
 
@@ -99,12 +102,12 @@ function Slider({ item, color, text, value, ...props }) {
         <div className="slider">
             <div className="inner" style={innerStyle}> </div>
             <div className="handle" style={handleStyle}>
-                <Icon color="white"> 
-                    <BsDropletFill/>
+                <Icon color="white">
+                    <BsDropletFill />
                 </Icon>
 
-                
-                
+
+
             </div>
             <div className="text"> {text} </div>
         </div>
