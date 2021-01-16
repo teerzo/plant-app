@@ -6,6 +6,9 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Header from 'components/header';
 
 // Routes
+import Login from './login';
+import Logout from './logout';
+
 import Home from './home';
 import Collection from './collection';
 import About from './about';
@@ -17,6 +20,13 @@ export default function Router() {
             <Header />
             <div className="container">
                 <Switch>
+                    <Route path="/login">
+                        <Login />
+                    </Route>
+                    <Route path="/logout">
+                        <Logout />
+                    </Route>
+
                     <Route path="/plants">
                         <Plants />
                     </Route>
