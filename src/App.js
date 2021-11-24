@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from 'react'
 // Local
 import Router from 'components/router';
 // Styles
-import 'app.scss'
+import 'App.scss'
 
 export default function App() {
   return (
