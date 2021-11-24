@@ -44,7 +44,6 @@ export default function Router() {
 
     return (
         <>
-
             <AuthProvider>
                 <div className="container">
                     
