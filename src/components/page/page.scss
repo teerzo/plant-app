@@ -1,0 +1,90 @@
+.page {
+    overflow: hidden;
+    position: relative;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    // color: #ffffff;
+    margin: 0 auto;
+
+    @media screen and (max-width: 1000px) {
+        // grid-row-start: 1;
+        // grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    .page-title {
+        text-align: center;
+        color: #ffffff;
+        background-color: rgba($color: #017046, $alpha: 1);
+    }
+
+    .page-padding {
+        padding: 20px;
+        height: 100%;
+        position: relative;
+        overflow-y: auto;
+
+        // pointer-events: none;
+        & > * {
+            // pointer-events: all;
+        }
+
+        body::-webkit-scrollbar {
+            width: 1em;
+        }
+
+        body::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: darkgrey;
+            outline: 1px solid slategrey;
+        }
+    }
+    .page-layout-centered {
+        max-width: 1000px;
+        margin: 0 auto;
+
+        // background-color: rgba($color: #333333, $alpha: 0.5);
+    }
+
+    .home {
+        .flex-vertical {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: center;
+            // pointer-events: none;
+        }
+        .flex-horizontal {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            // pointer-events: none;
+            & > * {
+                // pointer-events: all;
+            }
+        }
+        .icon {
+            font-size: 100px;
+            color: #111111;
+            margin-left: 10px;
+            margin-right: 10px;
+            // color: red;
+            &:hover {
+                color: rgb(75, 248, 196);
+            }
+        }
+    }
+}
