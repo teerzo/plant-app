@@ -1,0 +1,28 @@
+.side-nav {
+    // position: fixed;
+    z-index: 9;
+
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+
+    display: block;
+
+    background-color: #efeff1;
+    // background-color: rgba($color: #005031, $alpha: 1);
+
+    // min-width: 200px;
+    // width: 200px;
+
+
+    .nav-padding {
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+        justify-content: center;
+        // padding-top: 10px;
+        padding: 5px;
+    }
+
+   
+}

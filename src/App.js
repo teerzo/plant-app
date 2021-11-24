@@ -1,13 +1,16 @@
-// Components
+// Libs
+import React, { useRef, useState, useEffect } from 'react'
+// Local
 import Router from 'components/router';
 // Styles
-import './App.scss';
+import 'app.scss'
 
 export default function App() {
   return (
-    <div className="App">
-      {/* <div className="mask"> </div> */}
-      <Router />
-    </div>
+    <>
+      <div className="App">
+        <Router />
+      </div>
+    </>
   );
 }
