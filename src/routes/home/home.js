@@ -24,7 +24,7 @@ export default function Home({ ...props }) {
                     <h1 className="center"> Coming soon... </h1>
 
                     <div className="center">
-                        <Image width={400} src={monsteraImg} />
+                        <Image src={monsteraImg} styles={{"maxWidth": '300px'}} />
                     </div>
 
                 </div>
