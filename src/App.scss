@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Tourney:wght@500;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap");
 
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
 body {
   margin: 0;
   font-family: "Roboto", cursive;
@@ -53,12 +57,21 @@ body {
   // }
 }
 
+
+
 p,
 h1,
 h2,
 h3 {
   &.center {
     text-align: center;
+  }
+}
+
+div {
+  &.center {
+    text-align: center;
+    margin: 0 auto;
   }
 }
 

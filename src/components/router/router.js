@@ -16,7 +16,8 @@ import Home from 'routes/home';
 import About from 'routes/about';
 import Login from 'routes/login';
 import Logout from 'routes/logout';
-// import Register from './register';
+import SignUp from 'routes/signup';
+import Forgot from 'routes/forgot';
 
 // Private Routes
 import Account from 'routes/account';
@@ -61,7 +62,8 @@ export default function Router() {
                         } />
                         <Route path="/login" element={<Login />} />
                         <Route path="/logout" element={<Logout />} />
-                        <Route path="/register" element={<Login />} />
+                        <Route path="/signup" element={<SignUp />} />
+                        <Route path="/forgot" element={<Forgot />} />
 
                         <Route path="*" element={<Navigate to="/" />} />
                     </Routes>

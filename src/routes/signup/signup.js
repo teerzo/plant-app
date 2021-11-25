@@ -11,9 +11,9 @@ import Button from 'components/button';
 // Auth
 import { AuthProvider, useAuth } from 'auth/auth';
 
-import './login.scss';
+import './signup.scss';
 
-export default function LoginPage({ ...props }) {
+export default function SignUp({ ...props }) {
     let navigate = useNavigate();
     let location = useLocation();
     let auth = useAuth();
@@ -53,7 +53,7 @@ function Form({ handleSubmit, ...propsprops }) {
     return (
         <form className="form" onSubmit={handleSubmit}>
 
-            <h2> Login </h2>
+            <h2> Sign Up </h2>
 
             <div className="form-group">
                 <label for="username"> Username: </label>
@@ -63,11 +63,15 @@ function Form({ handleSubmit, ...propsprops }) {
                 <label for="password"> Password: </label>
                 <input id="password" name="password" type="text" required/>
             </div>
-            <Button type="submit"> Login </Button>
-            <div className="divider"> </div>
-            <div className="forgot">
-                <Link to="/forgot"> Forgot username/password? </Link>
+            <div className="form-group">
+                <label for="password2"> Confirm Password: </label>
+                <input id="password2" name="password2" type="text" required/>
             </div>
+            <Button type="submit"> Sign Up </Button>
+            <div className="divider"> </div>
+            {/* <div className="forgot">
+                <Link to="/forgot"> Forgot username/password? </Link>
+            </div> */}
 
             <p> or </p>
 

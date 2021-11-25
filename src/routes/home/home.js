@@ -6,18 +6,26 @@ import { FaGithub, FaTwitter } from "react-icons/fa";
 // Components
 import Page from 'components/page';
 import Link from 'components/link';
-
+import Image from 'components/image';
+import AuthStatus from 'components/auth-status';
 // Auth
 import { AuthProvider, useAuth } from 'auth/auth';
+
+import monsteraImg from 'images/monstera-full.png';
+
 
 export default function Home({ ...props }) {
     return (
         <>
             <Page title={"Home"} type={null}>
                 <div className="page-padding">
-                    {/* <AuthStatus /> */}
+                    <AuthStatus />
 
-                    <h1 className="center"> HOME </h1>
+                    <h1 className="center"> Coming soon... </h1>
+
+                    <div className="center">
+                        <Image width={400} src={monsteraImg} />
+                    </div>
 
                 </div>
                 {/* <div className="home page-padding page-layout-centered">
@@ -34,27 +42,5 @@ export default function Home({ ...props }) {
                 </div> */}
             </Page>
         </>
-    );
-}
-
-function AuthStatus() {
-    let auth = useAuth();
-    let navigate = useNavigate();
-
-    if (!auth.user) {
-        return <p>You are not logged in.</p>;
-    }
-
-    return (
-        <p>
-            Welcome {auth.user}!{" "}
-            <button
-                onClick={() => {
-                    auth.signout(() => navigate("/"));
-                }}
-            >
-                Sign out
-        </button>
-        </p>
     );
 }
