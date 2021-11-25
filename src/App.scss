@@ -1,82 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Tourney:wght@500;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap");
 
 * {
-  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
-  
+  margin: 0;
+  font-family: "Roboto", cursive;
+  // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  //   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  //   sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-weight: 900;
+}
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  background: rgba($color: #000000, $alpha: 0);
 }
 
 .App {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  overflow: hidden;
-
-  min-width: 320px;
-  min-height: 600px;
-
-  padding-top: 63px;
-}
-.mask {
-  position: fixed;
-  z-index: -1;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  /* background-color: black; */
-  background-image: url("./images/monstera-bg2.png");
-  background-size: 500px;
-  background-repeat: repeat;
-  opacity: 0.5;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  width: 100%;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-flow: column nowrap !important;
+  position: absolute !important;
+  inset: 0px !important;
 }
 
 .container {
-  overflow-y: auto;
-  // max-width: 500px;
-  // font-family: Roboto, sans-serif;
-  line-height: 1.4;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin: 0 auto;
-  // padding: 4rem 1rem;
-  font-size: 1.5rem;
-
+  // display: flex;
+  // flex-wrap: nowrap;
+  // flex-direction: row;
+  position: relative;
+  overflow: hidden;
   height: 100%;
-  // height: 100vh;
-  // height: calc(100vh - 76px);
+  width: 100%;
+  // pointer-events: none;
+
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  grid-template-rows: 60px 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  // @media screen and (min-width: 1000px) {
+  //   grid-template-columns: 1fr;
+  //   grid-template-rows: 60px 1fr;
+  // }
 }
 
-.flex-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+
+
+p,
+h1,
+h2,
+h3 {
+  &.center {
+    text-align: center;
+  }
 }
 
-.flex-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+div {
+  &.center {
+    text-align: center;
+    margin: 0 auto;
+  }
 }
-.full-height {
-  height: 100%;
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+
+.flex-grow {
+  flex-grow: 1;
 }
