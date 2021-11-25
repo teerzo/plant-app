@@ -11,9 +11,9 @@ import Button from 'components/button';
 // Auth
 import { AuthProvider, useAuth } from 'auth/auth';
 
-import './login.scss';
+import './forgot.scss';
 
-export default function LoginPage({ ...props }) {
+export default function Forgot({ ...props }) {
     let navigate = useNavigate();
     let location = useLocation();
     let auth = useAuth();
@@ -53,25 +53,17 @@ function Form({ handleSubmit, ...propsprops }) {
     return (
         <form className="form" onSubmit={handleSubmit}>
 
-            <h2> Login </h2>
+            <h2> Forgot email/password? </h2>
 
             <div className="form-group">
-                <label for="username"> Username: </label>
+                <label for="username"> Email/Username: </label>
                 <input id="username" name="username" type="text" required/>
             </div>
-            <div className="form-group">
-                <label for="password"> Password: </label>
-                <input id="password" name="password" type="text" required/>
-            </div>
-            <Button type="submit"> Login </Button>
+            <Button type="submit"> Continue </Button>
             <div className="divider"> </div>
             <div className="forgot">
-                <Link to="/forgot"> Forgot username/password? </Link>
+                <Link to="/login"> Log in instead? </Link>
             </div>
-
-            <p> or </p>
-
-            <Button disabled > Continue with Google </Button>
         </form>
     )
 } 

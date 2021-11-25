@@ -16,9 +16,7 @@ export default function Home({ ...props }) {
             <Page title={"Home"} type={null}>
                 <div className="page-padding">
                     <h1 className="center"> About </h1>
-
-                    <p className="center"> Made with <FaHeart style={{color: 'red'}}/> by <a href="https://twitter.com/teerzo"> teerzo </a> </p>
-
+                    <p className="center"> Made with <FaHeart style={{color: 'red'}}/> by <a target="_blank" href="https://twitter.com/teerzo"> teerzo </a> </p>
                 </div>
             </Page>
         </>

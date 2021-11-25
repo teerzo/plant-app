@@ -11,6 +11,8 @@ import Icon from 'components/icon';
 import Button from 'components/button';
 import RouteLink from 'components/route-link';
 import Image from 'components/image';
+import AuthStatus from 'components/auth-status';
+
 // Auth
 import { AuthProvider, useAuth } from 'auth/auth';
 
@@ -62,7 +64,7 @@ const Nav = forwardRef((props, ref) => {
     }
 
     const registerStyle = {
-        backgroundColor: '#FE61A3',
+        backgroundColor: 'rgb(255 186 112)',
         // borderColor: '#FFFFFF',
         // width: 80,
         color: '#333333'
@@ -82,40 +84,39 @@ const Nav = forwardRef((props, ref) => {
                     <div className={classes}>
                         <div className="nav-padding">
                             <NavLogo />
-                            {/* <FakeSpace /> */}
                             <div className="nav-title">
                                 <p> JUNGLE IN MY PLANTS </p>
                             </div>
                             <Hamburger open={open} onChange={handleChange} />
                         </div>
-
-                        {/* <div className="nav-links mobile">
-
-                        </div> */}
                         {open ?
                             <div className="nav-menu">
                                 <div className="nav-login">
                                     {!auth.user ?
                                         <>
-                                            <Link to="/login">
-                                                <Button style={loginStyle}> Login </Button>
-                                            </Link>
-                                            <Link to="/register">
-                                                <Button style={registerStyle}> Register </Button>
-                                            </Link>
-                                            <Icon className="nav-icon-profile profile-none"> <FaUserCircle /> </Icon>
+                                            <AuthStatus />
+                                            <div className="nav-user-parent">
+                                                <Link to="/account">
+                                                    <Icon className="nav-icon-profile profile-none"> <FaUserCircle /> </Icon>
+                                                </Link>
+                                            </div>
+                                            <div className="flex-grow"> </div>
                                         </>
                                         :
                                         <>
-                                            <Link to="/logout">
-                                                <Button> Logout </Button>
-                                            </Link>
-                                            <Link to="/account">
-                                                <Icon className="nav-icon-profile"> <FaUserCircle /> </Icon>
-                                            </Link>
+                                            <div className="nav-user-parent">
+                                                <Link to="/account">
+                                                    <Icon className="nav-icon-profile"> <FaUserCircle /> </Icon>
+                                                </Link>
+                                            </div>
+                                            {/* <RouteLink to="/account" expand={true} icon={<FaUserCircle />} text={"Account"} /> */}
+
+                                            <AuthStatus />
+                                            <div className="flex-grow"> </div>
                                         </>
                                     }
                                 </div>
+
 
                                 <div className="nav-links">
 
@@ -127,6 +128,25 @@ const Nav = forwardRef((props, ref) => {
                                     <RouteLink to="/about" expand={true} icon={<FaQuestionCircle />} text={"About"} />
 
                                 </div>
+                                <div className="flex-grow"> </div>
+                                <div className="nav-login">
+                                    {!auth.user ?
+                                        <>
+                                            <Link to="/login">
+                                                <Button style={loginStyle}> Log in  </Button>
+                                            </Link>
+                                            <Link to="/signup">
+                                                <Button style={registerStyle}> Sign up </Button>
+                                            </Link>
+                                        </>
+                                        :
+                                        <>
+                                            <Link to="/logout">
+                                                <Button> Logout </Button>
+                                            </Link>
+                                        </>
+                                    }
+                                </div>
                             </div>
                             :
                             <> </>
@@ -136,8 +156,10 @@ const Nav = forwardRef((props, ref) => {
                 </>
                 :
                 <div className='nav'>
-                    <div className="nav-padding">
-                        <NavLogo />
+                    <div className="nav-inner">
+                        <div className="nav-logo-parent">
+                            <NavLogo />
+                        </div>
                         <div className="nav-title">
                             <p> JUNGLE IN MY PLANTS </p>
                         </div>
@@ -145,18 +167,30 @@ const Nav = forwardRef((props, ref) => {
                             {!auth.user ?
                                 <>
                                     <Link to="/login">
-                                        <Button style={loginStyle}> Login </Button>
+                                        <Button style={loginStyle}> Log in </Button>
                                     </Link>
-                                    <Link to="/register">
-                                        <Button style={registerStyle}> Register </Button>
+                                    <Link to="/signup">
+                                        <Button style={registerStyle}> Sign up </Button>
                                     </Link>
-                                    <Icon className="nav-icon-profile profile-none"> <FaUserCircle /> </Icon>
                                 </>
                                 :
                                 <>
                                     <Link to="/logout">
                                         <Button> Logout </Button>
                                     </Link>
+
+                                </>
+                            }
+                        </div>
+                        <div className="nav-user-parent">
+                            {!auth.user ?
+                                <>
+                                    <Link to="/account">
+                                        <Icon className="nav-icon-profile profile-none"> <FaUserCircle /> </Icon>
+                                    </Link>
+                                </>
+                                :
+                                <>
                                     <Link to="/account">
                                         <Icon className="nav-icon-profile"> <FaUserCircle /> </Icon>
                                     </Link>
@@ -164,9 +198,6 @@ const Nav = forwardRef((props, ref) => {
                             }
                         </div>
                     </div>
-
-
-
                 </div>
             }
 
