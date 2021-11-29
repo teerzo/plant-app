@@ -19,7 +19,7 @@ export default function Button({ className, style, children, ...props }) {
     }
 
     return (
-        <button className={classes} style={styles} props>
+        <button className={classes} style={styles} {...props}>
             {children}
         </button>
     )

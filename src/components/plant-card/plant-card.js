@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import React, { useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame, useLoader, extend, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, DeviceOrientationControls } from '@react-three/drei';
 import { useLocation } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer'
 
@@ -52,11 +52,11 @@ export default function PlantCard({ name, ...props }) {
     }, [inView])
 
     return (
-        <div ref={ref} className="plant-card">
-            <div className="title"> {name} </div>
+        <Link to="/plants/1">
+            <div ref={ref} className="plant-card">
+                <div className="title"> {name} </div>
 
-            <div className="inner">
-                <Link to="/plants/1">
+                <div className="inner">
                     {inView && show ?
                         <Canvas gl={{ antialias: true }} pixelRatio={window.devicePixelRatio}>
                             {!inView && <DisableRender />}
@@ -64,6 +64,8 @@ export default function PlantCard({ name, ...props }) {
                             <ambientLight />
                             <pointLight position={[10, 10, 10]} />
                             <CameraControls target={target} position={cameraPos} />
+
+                            <Cube color={'red'} scale={20} wireframe={true} />
 
                             <Cube color={'red'} position={new THREE.Vector3(0, 0, 0)} />
                             <Cube color={'green'} position={new THREE.Vector3(0, 1, 0)} />
@@ -73,9 +75,9 @@ export default function PlantCard({ name, ...props }) {
                         </Canvas>
                         : <> </>
                     }
-                </Link>
+                </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
@@ -91,7 +93,7 @@ const CameraControls = ({ target, position, ...props }) => {
     // Ref to the controls, so that we can update them on every frame using useFrame
     const controls = useRef();
     useFrame(({ clock, camera }) => {
-        controls.current.enabled = false;
+        // controls.current.enabled = false;
 
         // console.log('controls', controls.current);
 
@@ -110,17 +112,16 @@ const CameraControls = ({ target, position, ...props }) => {
         // const num = Math.sin(clock.getElapsedTime());
         // // console.log('num', num);
 
+        // console.log('controls', controls.current);
         // controls.current.target.lerp(target, 0.1);
-        // // controls.current.position0.lerp(position, 1);
+        // controls.current.position0.lerp(position, 1);
 
-        // // console.log('camera', camera);
+        // console.log('camera', camera);
         // camera.position.lerp(position, 0.1);
 
         controls.current.update()
     });
 
-
-
-
-    return <OrbitControls ref={controls} args={[camera, domElement]} />;
+    return <DeviceOrientationControls ref={controls} args={[camera, domElement]} />;
+    // return <OrbitControls ref={controls} args={[camera, domElement]} />;
 };
