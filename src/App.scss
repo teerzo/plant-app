@@ -92,3 +92,28 @@ div {
 .flex-grow {
   flex-grow: 1;
 }
+
+
+.grid {
+  display: grid;
+  &.col2 {
+    grid-template-columns: 1fr 1fr;
+    @media screen and (max-width: 1000px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  &.col4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    @media screen and (max-width: 1000px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  &.row2 {
+    grid-template-rows: 1fr 1fr;
+  }
+  &.gap {
+    grid-gap: 10px;
+  }
+
+ 
+}
