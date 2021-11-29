@@ -75,6 +75,9 @@ export default function PlantCard({ name, ...props }) {
         // if (y > 20) y = 20;
         // if (y < -20) y = -20;
 
+         if (z > 20) z = 20;
+        if (z < -20) z = -20;
+
         setAlpha(z);
         setBeta(x);
         setGamma(y);
