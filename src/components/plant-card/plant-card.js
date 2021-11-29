@@ -99,69 +99,96 @@ const CameraControls = ({ target, position, ...props }) => {
     const controls = useRef();
 
     const [gamma, setGamma] = useState(0);
+    const [beta, setBeta] = useState(0);
+    const [alpha, setAlpha] = useState(0);
 
-    window.addEventListener('deviceorientation', function(e) {
-        var gammaRotation = e.gamma ? e.gamma * (Math.PI / 600) : 0;
-        // monogram.rotation.y = gammaRotation;
-        console.log('gamma', gammaRotation);
-        setGamma(gammaRotation);
+    window.addEventListener('deviceorientation', function (e) {
+        var x = e.beta;  // In degree in the range [-180,180], x, 'front to back'
+        var y = e.gamma; // In degree in the range [-90,90], y, 'left to right'
+        var z = e.alpha; // 0-360, z, compass orientation
+
+        // console.log('x', x);
+        // console.log('y', y);
+
+        setAlpha(z);
+        setBeta(x);
+        setGamma(y);
+
+        // // coord 1: 0,0
+        // // coord 2: x,y
+        // // calculate the angle
+        // var rad = Math.atan2(y, x);
+        // var deg = rad * (180 / Math.PI);
+
+        // // take into account if phone is held sideways / in landscape mode
+        // var screenOrientation = window.screen.orientation || window.screen.mozOrientation || window.screen.msOrientation;
+        // // 90, -90, or 0
+        // var angle = screenOrientation.angle || window.orientation || 0;
+
+        // deg = deg + angle;
+
+        // console.log('deg', deg);
+
+        // watercup.innerHTML = Math.round(deg);
+
+        // var alphaRotation = e.alpha ? e.alpha * (Math.PI / 600) : 0;
+        // var betaRotation = e.beta ? e.beta * (Math.PI / 600) : 0;
+        // // var gammaRotation = e.gamma ? e.gamma * (Math.PI / 600) : 0;
+        // var gammaRotation = e.gamma;
+        // // monogram.rotation.y = gammaRotation;
+        // console.log('gamma', gammaRotation);
+        // setGamma(alphaRotation);
+        // setGamma(betaRotation);
+        // setGamma(gammaRotation);
+
     });
 
-    useEffect(() => {
-        if (camera) {
-            // const quaternion = new THREE.Quaternion();
-            // quaternion.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 2 );
-            // console.log(controls);
-            // controls.current.quaternion.rotateTowards(quaternion, 1);
-
-            // // console.log('camera', camera);
-            // // console.log('current', ref.current);
-            // const targetQuaternion = camera.quaternion;
-            // // if (!modelMesh.quaternion.equals(targetQuaternion)) {
-            // if (!ref.current.quaternion.equals(targetQuaternion)) {
-            //     var step = 100 * delta;
-            //     ref.current.quaternion.rotateTowards(targetQuaternion, step);
-            // }
-        }
-
-    },[controls])
 
 
     useFrame(({ clock, camera }, delta) => {
+        controls.current.enabled = false;
 
         let newPos = new THREE.Vector3().copy(position);
 
-        newPos.x += 10 * gamma;
+        // newPos.x += 10 * gamma * (Math.PI / 600);
+        // newPos.y += 10 * beta * (Math.PI / 600);
 
-        camera.position.lerp(newPos, 0.1);
+        // newPos.x+=Math.sin(gamma * (Math.PI / 600) )*1;
+        // newPos.y+=Math.cos(beta * (Math.PI / 600))*1;
 
-        // controls.current.enabled = false;
+        // let _gamma = gamma * (Math.PI / 360);
+        // let _beta = beta * (Math.PI / 360);
 
-        // console.log('controls', controls.current);
+        // let _gamma = 2 *  Math.PI / gamma;
+        // let _beta = 2 * Math.PI / beta;
 
-        // const currentPos = 
+        // 2 * Math.PI * radius;
+
+        // console.log('math?', Math.PI / 600 );
+
+        // newPos.x = newPos.x + (Math.sin( _gamma) * 2);
+        // newPos.y = newPos.y + (Math.cos( _beta) * 2);
+    
+
+        // newPos.x = newPos.x * Math.cos(1) + newPos.z * Math.sin(1);
+        // newPos.z = newPos.z * Math.cos(1) - newPos.z * Math.sin(1);
+        // camera.position.copy(newPos);
+
+        const _gamma = (gamma * (Math.PI / 600) )*1;
+
+        var x = position.x,
+        y = position.y,
+        z = position.z;
+
+        let rotSpeed = 0.01;
+
+        camera.position.x = x * Math.cos(_gamma) + z * Math.sin(_gamma);
+        camera.position.z = z * Math.cos(_gamma) - x * Math.sin(_gamma);
+
+        // targetPosition.x = initialPosition.x + (Math.sin((Date.now() % timerRand) / timerRand * Math.PI * 2) * 1);
 
 
-        //     // lerp to target position
-        // lerpPosition.lerpVectors(targetPos, target, Math.sin(clock.getElapsedTime()));
-
-        // // console.log('lerp position', lerpPosition);
-
-        // camera.position.x = lerpPosition.x;
-        // camera.position.y = lerpPosition.y;
-        // camera.position.z = lerpPosition.z;
-
-        // const num = Math.sin(clock.getElapsedTime());
-        // // console.log('num', num);
-
-        // console.log('controls', controls.current);
-        // controls.current.target.lerp(newTarget, 0.1);
-        // controls.current.position0.lerp(position, 1);
-
-        // console.log('camera', camera);
-        camera.position.lerp(position, 0.1);
-
-        // camera.position.z += 1 * delta;
+        // controls.current.target.lerp(target, 0.1);
 
         controls.current.update()
     });
