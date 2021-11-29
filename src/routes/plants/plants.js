@@ -44,10 +44,8 @@ export default function Plants({ ...props }) {
                         <div className="flex" >
                             {plants.map((item, key) => {
                                 return (
-                                <>
-                                    <PlantCard key={key} {...item} />
-                                    {/* <div className="flex-space"> </div> */}
-                                </>)
+                                    <PlantCard key={key} index={key} {...item} />
+                                )
                             })}
 
                         </div>
@@ -78,7 +76,7 @@ function Search({ ...props }) {
                 <div className="search-inner">
                     <Icon> <FaFilter onClick={handleFiltersClick} /> </Icon>
 
-                    <div class="search-box">
+                    <div className="search-box">
                         {/* <div className="flex-grow"> </div> */}
                         {/* <label> SEARCH </label> */}
                         <input placeholder="Search...." />

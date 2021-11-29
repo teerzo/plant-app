@@ -1,0 +1,17 @@
+.plant {
+    .flex {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-self: center;
+        flex-wrap: wrap;
+
+        transition: all 1s linear;
+    }
+
+    .flex-space {
+        width: 20px;
+        background-color: #ff0000;
+    }
+}
+

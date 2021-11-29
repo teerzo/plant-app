@@ -25,30 +25,55 @@ export default function PlantCard({ name, ...props }) {
     const DisableRender = () => useFrame(() => null, 1000)
     const { ref, inView } = useInView()
 
+    const [show, setShow] = useState(false);
+
     const [target, setTarget] = useState(new THREE.Vector3(0, 0, 0));
     const [cameraPos, setCameraPos] = useState(new THREE.Vector3(0, 0, 0));
+
+    useEffect(() => {
+        console.log('PlantCard', props);
+
+        const timer = setTimeout(() => {
+            setShow(true);
+        }, 1000 * props.index);
+        return () => clearTimeout(timer);
+    }, [])
+
+    useEffect(() => {
+        if (inView) {
+            const timer = setTimeout(() => {
+                setShow(true);
+            }, 500);
+            return () => clearTimeout(timer);
+        }
+        else {
+            setShow(false);
+        }
+    }, [inView])
 
     return (
         <div ref={ref} className="plant-card">
             <div className="title"> {name} </div>
 
             <div className="inner">
-                {inView ?
-                    <Canvas gl={{ antialias: true }} pixelRatio={window.devicePixelRatio}>
-                        {!inView && <DisableRender />}
+                <Link to="/plants/1">
+                    {inView && show ?
+                        <Canvas gl={{ antialias: true }} pixelRatio={window.devicePixelRatio}>
+                            {!inView && <DisableRender />}
 
-                        <ambientLight />
-                        <pointLight position={[10, 10, 10]} />
-                        <CameraControls target={target} position={cameraPos} />
+                            <ambientLight />
+                            <pointLight position={[10, 10, 10]} />
+                            <CameraControls target={target} position={cameraPos} />
 
-                        <Cube color={'red'} position={new THREE.Vector3(0, 0, 0)} />
-                        <Cube color={'green'} position={new THREE.Vector3(0, 1, 0)} />
-                        <Cube color={'blue'} position={new THREE.Vector3(1, 0, 0)} />
-                        <Cube color={'yellow'} position={new THREE.Vector3(0, -1, 0)} />
-                        <Cube color={'orange'} position={new THREE.Vector3(-1, 0, 0)} />
-                    </Canvas>
-                    : <> </>
-                }
+                            <Cube color={'red'} position={new THREE.Vector3(0, 0, 0)} />
+                            <Cube color={'green'} position={new THREE.Vector3(0, 1, 0)} />
+                            <Cube color={'blue'} position={new THREE.Vector3(1, 0, 0)} />
+                            <Cube color={'yellow'} position={new THREE.Vector3(0, -1, 0)} />
+                            <Cube color={'orange'} position={new THREE.Vector3(-1, 0, 0)} />
+                        </Canvas>
+                        : <> </>
+                    }
+                </Link>
             </div>
         </div>
     )
