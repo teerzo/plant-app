@@ -101,46 +101,29 @@ const CameraControls = ({ target, position, ...props }) => {
     const [gamma, setGamma] = useState(0);
     const [beta, setBeta] = useState(0);
     const [alpha, setAlpha] = useState(0);
+    const [orientation, setOrientation] = useState(0);
+
+    function setQuaternion(alpha, beta, gamma, orientation) {
+       
+    }
 
     window.addEventListener('deviceorientation', function (e) {
-        var x = e.beta;  // In degree in the range [-180,180], x, 'front to back'
-        var y = e.gamma; // In degree in the range [-90,90], y, 'left to right'
-        var z = e.alpha; // 0-360, z, compass orientation
+        let x = e.beta;  // In degree in the range [-180,180], x, 'front to back'
+        let y = e.gamma; // In degree in the range [-90,90], y, 'left to right'
+        let z = e.alpha; // 0-360, z, compass orientation
 
-        // console.log('x', x);
-        // console.log('y', y);
+        // let z = e.alpha * (Math.PI / 180);
+        // let x = e.beta * (Math.PI / 180);
+        // let y = e.gamma * (Math.PI / 180);
+        let ori = window.orientation * (Math.PI / 180);
+
+        // // console.log('x', x);
+        // // console.log('y', y);
 
         setAlpha(z);
         setBeta(x);
         setGamma(y);
-
-        // // coord 1: 0,0
-        // // coord 2: x,y
-        // // calculate the angle
-        // var rad = Math.atan2(y, x);
-        // var deg = rad * (180 / Math.PI);
-
-        // // take into account if phone is held sideways / in landscape mode
-        // var screenOrientation = window.screen.orientation || window.screen.mozOrientation || window.screen.msOrientation;
-        // // 90, -90, or 0
-        // var angle = screenOrientation.angle || window.orientation || 0;
-
-        // deg = deg + angle;
-
-        // console.log('deg', deg);
-
-        // watercup.innerHTML = Math.round(deg);
-
-        // var alphaRotation = e.alpha ? e.alpha * (Math.PI / 600) : 0;
-        // var betaRotation = e.beta ? e.beta * (Math.PI / 600) : 0;
-        // // var gammaRotation = e.gamma ? e.gamma * (Math.PI / 600) : 0;
-        // var gammaRotation = e.gamma;
-        // // monogram.rotation.y = gammaRotation;
-        // console.log('gamma', gammaRotation);
-        // setGamma(alphaRotation);
-        // setGamma(betaRotation);
-        // setGamma(gammaRotation);
-
+        setOrientation(ori)
     });
 
 
@@ -148,31 +131,31 @@ const CameraControls = ({ target, position, ...props }) => {
     useFrame(({ clock, camera }, delta) => {
         controls.current.enabled = false;
 
-        let newPos = new THREE.Vector3().copy(position);
+        // let newPos = new THREE.Vector3().copy(position);
 
-        // newPos.x += 10 * gamma * (Math.PI / 600);
-        // newPos.y += 10 * beta * (Math.PI / 600);
+        // // newPos.x += 10 * gamma * (Math.PI / 600);
+        // // newPos.y += 10 * beta * (Math.PI / 600);
 
-        // newPos.x+=Math.sin(gamma * (Math.PI / 600) )*1;
-        // newPos.y+=Math.cos(beta * (Math.PI / 600))*1;
+        // // newPos.x+=Math.sin(gamma * (Math.PI / 600) )*1;
+        // // newPos.y+=Math.cos(beta * (Math.PI / 600))*1;
 
-        // let _gamma = gamma * (Math.PI / 360);
-        // let _beta = beta * (Math.PI / 360);
+        // // let _gamma = gamma * (Math.PI / 360);
+        // // let _beta = beta * (Math.PI / 360);
 
-        // let _gamma = 2 *  Math.PI / gamma;
-        // let _beta = 2 * Math.PI / beta;
+        // // let _gamma = 2 *  Math.PI / gamma;
+        // // let _beta = 2 * Math.PI / beta;
 
-        // 2 * Math.PI * radius;
+        // // 2 * Math.PI * radius;
 
-        // console.log('math?', Math.PI / 600 );
+        // // console.log('math?', Math.PI / 600 );
 
-        // newPos.x = newPos.x + (Math.sin( _gamma) * 2);
-        // newPos.y = newPos.y + (Math.cos( _beta) * 2);
+        // // newPos.x = newPos.x + (Math.sin( _gamma) * 2);
+        // // newPos.y = newPos.y + (Math.cos( _beta) * 2);
     
 
-        // newPos.x = newPos.x * Math.cos(1) + newPos.z * Math.sin(1);
-        // newPos.z = newPos.z * Math.cos(1) - newPos.z * Math.sin(1);
-        // camera.position.copy(newPos);
+        // // newPos.x = newPos.x * Math.cos(1) + newPos.z * Math.sin(1);
+        // // newPos.z = newPos.z * Math.cos(1) - newPos.z * Math.sin(1);
+        // // camera.position.copy(newPos);
 
         let _gamma = gamma;
         if( _gamma > 40 ) _gamma = 40;
@@ -180,19 +163,44 @@ const CameraControls = ({ target, position, ...props }) => {
 
         let g = (_gamma * (Math.PI / 600) )*1;
 
-        var x = position.x,
-        y = position.y,
-        z = position.z;
+        let _beta = beta - 90;
+        // if( _beta > 40 ) _beta = 40;
+        // if( _beta < -40) _beta = -40;
 
-        let rotSpeed = 0.01;
+        let b = (_beta * (Math.PI / 600) )*1;
 
-        camera.position.x = x * Math.cos(g) + z * Math.sin(g);
-        camera.position.z = z * Math.cos(g) - x * Math.sin(g);
 
-        // targetPosition.x = initialPosition.x + (Math.sin((Date.now() % timerRand) / timerRand * Math.PI * 2) * 1);
+        let newPos = new THREE.Vector3().copy(position);
+
+        var x = newPos.x,
+        y = newPos.y,
+        z = newPos.z;
+
+
+        newPos.x += x * Math.cos(g) + z * Math.sin(g);
+        newPos.z += z * Math.cos(g) - x * Math.sin(g);
+
+        newPos.y += y * Math.cos(b) + z * Math.sin(b);
+        // newPos.z += z * Math.cos(b) - y * Math.sin(b);
+
+        camera.position.lerp(newPos, 0.1);
+        // camera.position.copy(newPos);
 
 
         // controls.current.target.lerp(target, 0.1);
+
+        // const zee = new THREE.Vector3(0, 0, 1);
+        // const euler = new THREE.Euler();
+        // const q0 = new THREE.Quaternion();
+        // const q1 = new THREE.Quaternion(-1 * Math.sqrt(0.5), 0, 0, Math.sqrt(0.5));
+
+        // euler.set(beta, alpha, -1 * gamma, "YXZ");
+        
+        // console.log('controls', controls.current);
+
+        // controls.current.object.quaternion.setFromEuler(euler);
+        // controls.current.object.quaternion.multiply(q1);
+        // controls.current.object.quaternion.multiply(q0.setFromAxisAngle(zee, -1 * orientation));
 
         controls.current.update()
     });
