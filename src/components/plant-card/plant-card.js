@@ -65,7 +65,7 @@ export default function PlantCard({ name, ...props }) {
                             <pointLight position={[10, 10, 10]} />
                             <CameraControls target={target} position={cameraPos} />
 
-                            <Cube color={'red'} scale={20} wireframe={true} args={[100, 100, 100, 4, 4, 4]}></Cube> />
+                            <Cube color={'red'} scale={5} wireframe={true} args={[100, 100, 100, 4,4,4]}></Cube> />
 {/* 
                             <Box args={[100, 100, 100, 4, 4, 4]}>
                                 <meshBasicMaterial attach="material" wireframe />
