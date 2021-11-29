@@ -13,10 +13,12 @@ import { AuthProvider, useAuth } from 'auth/auth';
 export default function Home({ ...props }) {
     return (
         <>
-            <Page title={"Home"} type={null}>
-                <div className="page-padding">
-                    <h1 className="center"> About </h1>
-                    <p className="center"> Made with <FaHeart style={{color: 'red'}}/> by <a target="_blank" href="https://teerzo.com"> teerzo </a> </p>
+            <Page title={"Home"} type={null} className="about">
+                <div className="page-inner">
+                    <div className="page-padding">
+                        <h1 className="center"> About </h1>
+                        <p className="center"> Made with <FaHeart style={{ color: 'red' }} /> by <a target="_blank" href="https://teerzo.com"> teerzo </a> </p>
+                    </div>
                 </div>
             </Page>
         </>
