@@ -24,7 +24,7 @@ export default function Home({ ...props }) {
                         <AuthStatus />
                         <div className="center">
                             <h1 className="center"> Coming soon... </h1>
-                            <Image src={monsteraImg} styles={{ "maxWidth": '250px' }} />
+                            <Image className="home-image" src={monsteraImg} />
                         </div>
                         <div className="grid col2 row2 gap">
                             <Section title={"News"} >

@@ -82,7 +82,7 @@ const Nav = forwardRef((props, ref) => {
             {mobile ?
                 <>
                     <div className={classes}>
-                        <div className="nav-padding">
+                        <div className="nav-inner">
                             <NavLogo />
                             <div className="nav-title">
                                 <p> JUNGLE IN MY PLANTS </p>
