@@ -1,0 +1,43 @@
+
+.plant-card {
+    border: 1px solid #b2e097;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #b2e097;
+    width: 200px;
+    height: 300px;
+
+    min-width: 200px;
+    min-height: 300px;
+
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    p {
+        margin: 0px;
+    }
+
+    .title {    
+        z-index: 2;
+        border: 1px solid #333333;
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 2px 5px;
+
+        font-weight: 700;
+        margin-bottom: -5px;
+    }
+
+    .inner {
+        background-color: #333333;
+        height: 100%;
+        border: 5px solid #b2e097;
+        // padding: 5px;
+
+        .canvas {
+
+        }
+    }
+}
