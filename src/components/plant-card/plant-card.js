@@ -70,8 +70,8 @@ export default function PlantCard({ name, ...props }) {
         // // console.log('x', x);
         // // console.log('y', y);
 
-        if( y > 20) y = 20;
-        if( y < -20) y = -20;
+        if (y > 20) y = 20;
+        if (y < -20) y = -20;
 
 
         setAlpha(z);
@@ -81,14 +81,14 @@ export default function PlantCard({ name, ...props }) {
     });
 
     let trans = '';
-    if( gamma >= 0 ) {
-        trans =`rotate3d( 0, 1, ${gamma * -0.01}, ${gamma}deg)` 
+    if (gamma >= 0) {
+        trans = `rotate3d( 0, 1, ${gamma * -0.01}, ${gamma}deg)`
 
     }
     else {
-        trans =`rotate3d( 0, 1, ${gamma * 0.01}, ${gamma}deg)` 
+        trans = `rotate3d( 0, 1, ${gamma * 0.01}, ${gamma}deg)`
     }
-    
+
     const style = {
         transform: trans
     }
@@ -107,7 +107,7 @@ export default function PlantCard({ name, ...props }) {
                             <pointLight position={[10, 10, 10]} />
                             <CameraControls target={target} position={cameraPos} gamma={gamma} beta={beta} />
 
-                            <Cube color={'red'} scale={5} wireframe={true} args={[100, 100, 100, 4,4,4]}></Cube> />
+                            <Cube color={'red'} scale={5} wireframe={true} args={[100, 100, 100, 4, 4, 4]}></Cube> />
 {/* 
                             <Box args={[100, 100, 100, 4, 4, 4]}>
                                 <meshBasicMaterial attach="material" wireframe />
@@ -122,6 +122,11 @@ export default function PlantCard({ name, ...props }) {
                         </Canvas>
                         : <> </>
                     }
+                </div>
+                <div className="debug">
+                    <p>  X: {beta ?beta.toFixed(2) : 0}</p>
+                    <p>  Y: {gamma ?gamma.toFixed(2) : 0} </p>
+                    <p>  Z: {alpha ? alpha.toFixed(2) : 0} </p>
                 </div>
             </div>
         </Link>
@@ -140,7 +145,7 @@ const CameraControls = ({ target, position, gamma, beta, ...props }) => {
     // Ref to the controls, so that we can update them on every frame using useFrame
     const controls = useRef();
 
- 
+
 
     useFrame(({ clock, camera }, delta) => {
         controls.current.enabled = false;
@@ -165,30 +170,30 @@ const CameraControls = ({ target, position, gamma, beta, ...props }) => {
 
         // // newPos.x = newPos.x + (Math.sin( _gamma) * 2);
         // // newPos.y = newPos.y + (Math.cos( _beta) * 2);
-    
+
 
         // // newPos.x = newPos.x * Math.cos(1) + newPos.z * Math.sin(1);
         // // newPos.z = newPos.z * Math.cos(1) - newPos.z * Math.sin(1);
         // // camera.position.copy(newPos);
 
         let _gamma = gamma * -1;
-        if( _gamma > 40 ) _gamma = 40;
-        if( _gamma < -40) _gamma = -40;
+        if (_gamma > 40) _gamma = 40;
+        if (_gamma < -40) _gamma = -40;
 
-        let g = (_gamma * (Math.PI / 600) )*1;
+        let g = (_gamma * (Math.PI / 600)) * 1;
 
         let _beta = beta - 90;
         // if( _beta > 40 ) _beta = 40;
         // if( _beta < -40) _beta = -40;
 
-        let b = (_beta * (Math.PI / 600) )*1;
+        let b = (_beta * (Math.PI / 600)) * 1;
 
 
         let newPos = new THREE.Vector3().copy(position);
 
         var x = newPos.x,
-        y = newPos.y,
-        z = newPos.z;
+            y = newPos.y,
+            z = newPos.z;
 
 
         newPos.x += x * Math.cos(g) + z * Math.sin(g);
@@ -209,7 +214,7 @@ const CameraControls = ({ target, position, gamma, beta, ...props }) => {
         // const q1 = new THREE.Quaternion(-1 * Math.sqrt(0.5), 0, 0, Math.sqrt(0.5));
 
         // euler.set(beta, alpha, -1 * gamma, "YXZ");
-        
+
         // console.log('controls', controls.current);
 
         // controls.current.object.quaternion.setFromEuler(euler);
