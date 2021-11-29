@@ -70,8 +70,8 @@ export default function PlantCard({ name, ...props }) {
         // // console.log('x', x);
         // // console.log('y', y);
 
-        if( y > 40) y = 40;
-        if( y < -40) y = -40;
+        if( y > 20) y = 20;
+        if( y < -20) y = -20;
 
 
         setAlpha(z);
@@ -80,10 +80,17 @@ export default function PlantCard({ name, ...props }) {
         setOrientation(ori)
     });
 
+    let trans = '';
+    if( gamma >= 0 ) {
+        trans =`rotate3d( 0, 1, ${gamma * -0.01}, ${gamma}deg)` 
 
+    }
+    else {
+        trans =`rotate3d( 0, 1, ${gamma * 0.01}, ${gamma}deg)` 
+    }
     
     const style = {
-        transform: `rotate3d(0.001, 1, 0.001, ${gamma}deg)` 
+        transform: trans
     }
 
     return (
@@ -164,7 +171,7 @@ const CameraControls = ({ target, position, gamma, beta, ...props }) => {
         // // newPos.z = newPos.z * Math.cos(1) - newPos.z * Math.sin(1);
         // // camera.position.copy(newPos);
 
-        let _gamma = gamma;
+        let _gamma = gamma * -1;
         if( _gamma > 40 ) _gamma = 40;
         if( _gamma < -40) _gamma = -40;
 
