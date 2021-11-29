@@ -28,7 +28,7 @@ export default function PlantCard({ name, ...props }) {
     const [show, setShow] = useState(false);
 
     const [target, setTarget] = useState(new THREE.Vector3(0, 0, 0));
-    const [cameraPos, setCameraPos] = useState(new THREE.Vector3(0, 0, 0));
+    const [cameraPos, setCameraPos] = useState(new THREE.Vector3(0, 0, 3));
 
     useEffect(() => {
         console.log('PlantCard', props);
@@ -65,7 +65,12 @@ export default function PlantCard({ name, ...props }) {
                             <pointLight position={[10, 10, 10]} />
                             <CameraControls target={target} position={cameraPos} />
 
-                            <Cube color={'red'} scale={20} wireframe={true} />
+                            <Cube color={'red'} scale={20} wireframe={true} args={[100, 100, 100, 4, 4, 4]}></Cube> />
+{/* 
+                            <Box args={[100, 100, 100, 4, 4, 4]}>
+                                <meshBasicMaterial attach="material" wireframe />
+                                <axesHelper args={[100]} />
+                            </Box> */}
 
                             <Cube color={'red'} position={new THREE.Vector3(0, 0, 0)} />
                             <Cube color={'green'} position={new THREE.Vector3(0, 1, 0)} />
@@ -92,7 +97,44 @@ const CameraControls = ({ target, position, ...props }) => {
     } = useThree();
     // Ref to the controls, so that we can update them on every frame using useFrame
     const controls = useRef();
-    useFrame(({ clock, camera }) => {
+
+    const [gamma, setGamma] = useState(0);
+
+    window.addEventListener('deviceorientation', function(e) {
+        var gammaRotation = e.gamma ? e.gamma * (Math.PI / 600) : 0;
+        // monogram.rotation.y = gammaRotation;
+        console.log('gamma', gammaRotation);
+        setGamma(gammaRotation);
+    });
+
+    useEffect(() => {
+        if (camera) {
+            // const quaternion = new THREE.Quaternion();
+            // quaternion.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 2 );
+            // console.log(controls);
+            // controls.current.quaternion.rotateTowards(quaternion, 1);
+
+            // // console.log('camera', camera);
+            // // console.log('current', ref.current);
+            // const targetQuaternion = camera.quaternion;
+            // // if (!modelMesh.quaternion.equals(targetQuaternion)) {
+            // if (!ref.current.quaternion.equals(targetQuaternion)) {
+            //     var step = 100 * delta;
+            //     ref.current.quaternion.rotateTowards(targetQuaternion, step);
+            // }
+        }
+
+    },[controls])
+
+
+    useFrame(({ clock, camera }, delta) => {
+
+        let newPos = new THREE.Vector3().copy(position);
+
+        newPos.x += 10 * gamma;
+
+        camera.position.lerp(newPos, 0.1);
+
         // controls.current.enabled = false;
 
         // console.log('controls', controls.current);
@@ -113,15 +155,19 @@ const CameraControls = ({ target, position, ...props }) => {
         // // console.log('num', num);
 
         // console.log('controls', controls.current);
-        // controls.current.target.lerp(target, 0.1);
+        // controls.current.target.lerp(newTarget, 0.1);
         // controls.current.position0.lerp(position, 1);
 
         // console.log('camera', camera);
-        // camera.position.lerp(position, 0.1);
+        camera.position.lerp(position, 0.1);
+
+        // camera.position.z += 1 * delta;
 
         controls.current.update()
     });
 
-    return <DeviceOrientationControls ref={controls} args={[camera, domElement]} />;
-    // return <OrbitControls ref={controls} args={[camera, domElement]} />;
+    // return <DeviceOrientationControls ref={controls} args={[camera, domElement]} />;
+    return <OrbitControls ref={controls} args={[camera, domElement]} />;
 };
+
+
