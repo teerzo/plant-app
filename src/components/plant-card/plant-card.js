@@ -5,6 +5,7 @@ import { Canvas, useFrame, useLoader, extend, useThree } from '@react-three/fibe
 import * as THREE from 'three'
 import { OrbitControls } from '@react-three/drei';
 import { useLocation } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer'
 
 // Components
 import Page from 'components/page';
@@ -21,28 +22,29 @@ import Cube from '../../objects/cube';
 import './plant-card.scss';
 
 export default function PlantCard({ name, ...props }) {
+    const DisableRender = () => useFrame(() => null, 1000)
+    const { ref, inView } = useInView()
 
-    const [target, setTarget] = useState(new THREE.Vector3(0,0,0));
-    const [cameraPos, setCameraPos] = useState(new THREE.Vector3(0,0,0));
+    const [target, setTarget] = useState(new THREE.Vector3(0, 0, 0));
+    const [cameraPos, setCameraPos] = useState(new THREE.Vector3(0, 0, 0));
 
     return (
-        <div className="plant-card">
+        <div ref={ref} className="plant-card">
             <div className="title"> {name} </div>
 
             <div className="inner">
                 <Canvas gl={{ antialias: true }} pixelRatio={window.devicePixelRatio}>
+                    {!inView && <DisableRender />}
+
                     <ambientLight />
                     <pointLight position={[10, 10, 10]} />
                     <CameraControls target={target} position={cameraPos} />
 
-                        
                     <Cube color={'red'} position={new THREE.Vector3(0, 0, 0)} />
                     <Cube color={'green'} position={new THREE.Vector3(0, 1, 0)} />
                     <Cube color={'blue'} position={new THREE.Vector3(1, 0, 0)} />
                     <Cube color={'yellow'} position={new THREE.Vector3(0, -1, 0)} />
                     <Cube color={'orange'} position={new THREE.Vector3(-1, 0, 0)} />
-
-
                 </Canvas>
             </div>
         </div>
