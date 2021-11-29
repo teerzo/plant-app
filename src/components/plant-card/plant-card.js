@@ -33,19 +33,22 @@ export default function PlantCard({ name, ...props }) {
             <div className="title"> {name} </div>
 
             <div className="inner">
-                <Canvas gl={{ antialias: true }} pixelRatio={window.devicePixelRatio}>
-                    {!inView && <DisableRender />}
+                {inView ?
+                    <Canvas gl={{ antialias: true }} pixelRatio={window.devicePixelRatio}>
+                        {!inView && <DisableRender />}
 
-                    <ambientLight />
-                    <pointLight position={[10, 10, 10]} />
-                    <CameraControls target={target} position={cameraPos} />
+                        <ambientLight />
+                        <pointLight position={[10, 10, 10]} />
+                        <CameraControls target={target} position={cameraPos} />
 
-                    <Cube color={'red'} position={new THREE.Vector3(0, 0, 0)} />
-                    <Cube color={'green'} position={new THREE.Vector3(0, 1, 0)} />
-                    <Cube color={'blue'} position={new THREE.Vector3(1, 0, 0)} />
-                    <Cube color={'yellow'} position={new THREE.Vector3(0, -1, 0)} />
-                    <Cube color={'orange'} position={new THREE.Vector3(-1, 0, 0)} />
-                </Canvas>
+                        <Cube color={'red'} position={new THREE.Vector3(0, 0, 0)} />
+                        <Cube color={'green'} position={new THREE.Vector3(0, 1, 0)} />
+                        <Cube color={'blue'} position={new THREE.Vector3(1, 0, 0)} />
+                        <Cube color={'yellow'} position={new THREE.Vector3(0, -1, 0)} />
+                        <Cube color={'orange'} position={new THREE.Vector3(-1, 0, 0)} />
+                    </Canvas>
+                    : <> </>
+                }
             </div>
         </div>
     )
