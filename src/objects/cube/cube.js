@@ -34,10 +34,10 @@ export default function Cube({color, position, rotation, ...props}) {
     // Subscribe this component to the render-loop, rotate the mesh every frame
     useFrame((state, delta) => {
 
-        let targetPosition = new THREE.Vector3().copy(position);
+        let targetPosition = new THREE.Vector3().copy(initialPosition);
 
-        targetPosition.x = position.x + (Math.sin((Date.now()%timerRand)/timerRand * Math.PI * 2) * 1);
-        targetPosition.y = position.y + (Math.cos((Date.now()%timerRand)/timerRand * Math.PI * 2) * 1);
+        targetPosition.x = initialPosition.x + (Math.sin((Date.now()%timerRand)/timerRand * Math.PI * 2) * 1);
+        targetPosition.y = initialPosition.y + (Math.cos((Date.now()%timerRand)/timerRand * Math.PI * 2) * 1);
 
 
 
@@ -68,11 +68,11 @@ export default function Cube({color, position, rotation, ...props}) {
     function reset() {
 
 
-        if (position) {
+        if (initialPosition) {
             // console.log('props', props);
-            ref.current.position.x = position.x;
-            ref.current.position.y = position.y;
-            ref.current.position.z = position.z;
+            ref.current.position.x = initialPosition.x;
+            ref.current.position.y = initialPosition.y;
+            ref.current.position.z = initialPosition.z;
         }
 
         if( rotation ) {
