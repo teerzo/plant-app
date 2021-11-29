@@ -38,11 +38,13 @@ export default function PlantCard({ name, ...props }) {
 
     useEffect(() => {
         console.log('PlantCard', props);
+        window.addEventListener('deviceorientation', handleDeviceChange);
 
         const timer = setTimeout(() => {
             setShow(true);
         }, 1000 * props.index);
         return () => clearTimeout(timer);
+
     }, [])
 
     useEffect(() => {
@@ -57,7 +59,7 @@ export default function PlantCard({ name, ...props }) {
         }
     }, [inView])
 
-    window.addEventListener('deviceorientation', function (e) {
+   function handleDeviceChange(e) {
         let x = e.beta;  // In degree in the range [-180,180], x, 'front to back'
         let y = e.gamma; // In degree in the range [-90,90], y, 'left to right'
         let z = e.alpha; // 0-360, z, compass orientation
@@ -78,7 +80,7 @@ export default function PlantCard({ name, ...props }) {
         setBeta(x);
         setGamma(y);
         setOrientation(ori)
-    });
+    }
 
     let trans = '';
     if (gamma >= 0) {
@@ -150,8 +152,11 @@ const CameraControls = ({ target, position, ...props }) => {
     const [alpha, setAlpha] = useState(0);
     const [orientation, setOrientation] = useState(0);
 
+    useEffect( () => {
+        window.addEventListener('deviceorientation', handleDeviceChange);
+    },[]);
 
-    window.addEventListener('deviceorientation', function (e) {
+    function handleDeviceChange(e) {
         let x = e.beta;  // In degree in the range [-180,180], x, 'front to back'
         let y = e.gamma; // In degree in the range [-90,90], y, 'left to right'
         let z = e.alpha; // 0-360, z, compass orientation
@@ -172,7 +177,7 @@ const CameraControls = ({ target, position, ...props }) => {
         setBeta(x);
         setGamma(y);
         setOrientation(ori)
-    });
+    };
 
 
     useFrame(({ clock, camera }, delta) => {
