@@ -4,9 +4,9 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 
-export default function Cube({color, position, rotation, ...props}) {
+export default function Cube({ color, position, rotation, anim = false, ...props }) {
 
-    const [initialPosition, setInitPosition] = useState( position ? position : new THREE.Vector3(0,0,0));
+    const [initialPosition, setInitPosition] = useState(position ? position : new THREE.Vector3(0, 0, 0));
 
     const [lifeSpan, setLifeSpan] = useState(0);
     const [maxLifeSpan, setMaxLifeSpan] = useState(1);
@@ -16,7 +16,7 @@ export default function Cube({color, position, rotation, ...props}) {
     const [rotateSpeed, setRotateSpeed] = useState([0, 0, 0]);
     const [rotateDir, setRotateDir] = useState([0, 0, 0]);
 
-    const [timerRand, setTimerRand] = useState(rand(10000,10000));
+    const [timerRand, setTimerRand] = useState(rand(10000, 10000));
     // const [timerRand, setTimerRand] = useState(rand(30000,60000));
     const [zRand, setZRand] = useState(1);
 
@@ -36,8 +36,10 @@ export default function Cube({color, position, rotation, ...props}) {
 
         let targetPosition = new THREE.Vector3().copy(initialPosition);
 
-        targetPosition.x = initialPosition.x + (Math.sin((Date.now()%timerRand)/timerRand * Math.PI * 2) * 1);
-        targetPosition.y = initialPosition.y + (Math.cos((Date.now()%timerRand)/timerRand * Math.PI * 2) * 1);
+        if (anim) {
+            targetPosition.x = initialPosition.x + (Math.sin((Date.now() % timerRand) / timerRand * Math.PI * 2) * 1);
+            targetPosition.y = initialPosition.y + (Math.cos((Date.now() % timerRand) / timerRand * Math.PI * 2) * 1);
+        }
 
 
 
@@ -75,7 +77,7 @@ export default function Cube({color, position, rotation, ...props}) {
             ref.current.position.z = initialPosition.z;
         }
 
-        if( rotation ) {
+        if (rotation) {
             ref.current.rotation.x = rotation.x;
             ref.current.rotation.y = rotation.y;
             ref.current.rotation.z = rotation.z;
@@ -109,7 +111,7 @@ export default function Cube({color, position, rotation, ...props}) {
             {...props}
             ref={ref}
             scale={props.scale ? props.scale : 1}
-            >
+        >
             <boxGeometry args={[0.5, 0.5, 0.5]} />
             <meshStandardMaterial color={color} wireframe={props.wireframe ? props.wireframe : false} opacity={props.opacity ? props.opacity : 1} />
             {props.children}
@@ -120,3 +122,4 @@ export default function Cube({color, position, rotation, ...props}) {
 function rand(min, max) {
     return Math.random() * (max - min) + min;
 }
+
