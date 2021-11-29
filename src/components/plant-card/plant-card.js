@@ -174,10 +174,11 @@ const CameraControls = ({ target, position, ...props }) => {
         // newPos.z = newPos.z * Math.cos(1) - newPos.z * Math.sin(1);
         // camera.position.copy(newPos);
 
-        if( gamma > 40 ) gamma = 40;
-        if( gamma < -40) gamma = -40;
+        let _gamma = gamma;
+        if( _gamma > 40 ) _gamma = 40;
+        if( _gamma < -40) _gamma = -40;
 
-        const _gamma = (gamma * (Math.PI / 600) )*1;
+        let g = (_gamma * (Math.PI / 600) )*1;
 
         var x = position.x,
         y = position.y,
@@ -185,8 +186,8 @@ const CameraControls = ({ target, position, ...props }) => {
 
         let rotSpeed = 0.01;
 
-        camera.position.x = x * Math.cos(_gamma) + z * Math.sin(_gamma);
-        camera.position.z = z * Math.cos(_gamma) - x * Math.sin(_gamma);
+        camera.position.x = x * Math.cos(g) + z * Math.sin(g);
+        camera.position.z = z * Math.cos(g) - x * Math.sin(g);
 
         // targetPosition.x = initialPosition.x + (Math.sin((Date.now() % timerRand) / timerRand * Math.PI * 2) * 1);
 
