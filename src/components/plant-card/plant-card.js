@@ -30,6 +30,12 @@ export default function PlantCard({ name, ...props }) {
     const [target, setTarget] = useState(new THREE.Vector3(0, 0, 0));
     const [cameraPos, setCameraPos] = useState(new THREE.Vector3(0, 0, 3));
 
+    const [gamma, setGamma] = useState(0);
+    const [beta, setBeta] = useState(0);
+    const [alpha, setAlpha] = useState(0);
+    const [orientation, setOrientation] = useState(0);
+
+
     useEffect(() => {
         console.log('PlantCard', props);
 
@@ -51,9 +57,38 @@ export default function PlantCard({ name, ...props }) {
         }
     }, [inView])
 
+    window.addEventListener('deviceorientation', function (e) {
+        let x = e.beta;  // In degree in the range [-180,180], x, 'front to back'
+        let y = e.gamma; // In degree in the range [-90,90], y, 'left to right'
+        let z = e.alpha; // 0-360, z, compass orientation
+
+        // let z = e.alpha * (Math.PI / 180);
+        // let x = e.beta * (Math.PI / 180);
+        // let y = e.gamma * (Math.PI / 180);
+        let ori = window.orientation * (Math.PI / 180);
+
+        // // console.log('x', x);
+        // // console.log('y', y);
+
+        if( y > 40) y = 40;
+        if( y < -40) y = -40;
+
+
+        setAlpha(z);
+        setBeta(x);
+        setGamma(y);
+        setOrientation(ori)
+    });
+
+
+    
+    const style = {
+        transform: `rotate3d(0.001, 1, 0.001, ${gamma}deg)` 
+    }
+
     return (
         <Link to="/plants/1">
-            <div ref={ref} className="plant-card">
+            <div ref={ref} className="plant-card" style={style}>
                 <div className="title"> {name} </div>
 
                 <div className="inner">
@@ -63,7 +98,7 @@ export default function PlantCard({ name, ...props }) {
 
                             <ambientLight />
                             <pointLight position={[10, 10, 10]} />
-                            <CameraControls target={target} position={cameraPos} />
+                            <CameraControls target={target} position={cameraPos} gamma={gamma} beta={beta} />
 
                             <Cube color={'red'} scale={5} wireframe={true} args={[100, 100, 100, 4,4,4]}></Cube> />
 {/* 
@@ -87,7 +122,7 @@ export default function PlantCard({ name, ...props }) {
 }
 
 
-const CameraControls = ({ target, position, ...props }) => {
+const CameraControls = ({ target, position, gamma, beta, ...props }) => {
     // Get a reference to the Three.js Camera, and the canvas html element.
     // We need these to setup the OrbitControls component.
     // https://threejs.org/docs/#examples/en/controls/OrbitControls
@@ -98,35 +133,7 @@ const CameraControls = ({ target, position, ...props }) => {
     // Ref to the controls, so that we can update them on every frame using useFrame
     const controls = useRef();
 
-    const [gamma, setGamma] = useState(0);
-    const [beta, setBeta] = useState(0);
-    const [alpha, setAlpha] = useState(0);
-    const [orientation, setOrientation] = useState(0);
-
-    function setQuaternion(alpha, beta, gamma, orientation) {
-       
-    }
-
-    window.addEventListener('deviceorientation', function (e) {
-        let x = e.beta;  // In degree in the range [-180,180], x, 'front to back'
-        let y = e.gamma; // In degree in the range [-90,90], y, 'left to right'
-        let z = e.alpha; // 0-360, z, compass orientation
-
-        // let z = e.alpha * (Math.PI / 180);
-        // let x = e.beta * (Math.PI / 180);
-        // let y = e.gamma * (Math.PI / 180);
-        let ori = window.orientation * (Math.PI / 180);
-
-        // // console.log('x', x);
-        // // console.log('y', y);
-
-        setAlpha(z);
-        setBeta(x);
-        setGamma(y);
-        setOrientation(ori)
-    });
-
-
+ 
 
     useFrame(({ clock, camera }, delta) => {
         controls.current.enabled = false;
