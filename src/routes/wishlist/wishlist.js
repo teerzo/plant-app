@@ -13,25 +13,12 @@ import { AuthProvider, useAuth } from 'auth/auth';
 export default function Wishlist({ ...props }) {
     return (
         <>
-            <Page title={"Wishlist"} type={null}>
-                <div className="page-padding">
-                    {/* <AuthStatus /> */}
-
-                    <h1 className="center"> Wishlist </h1>
-
-                </div>
-                {/* <div className="home page-padding page-layout-centered">
-                    <div className="flex-vertical">
-                        <div className="flex-horizontal">
-                            <OutLink href={"https://github.com/teerzo"}>
-                                <FaGithub className="icon" />
-                            </OutLink>
-                            <OutLink href={"https://twitter.com/teerzo"}>
-                                <FaTwitter className="icon" />
-                            </OutLink>
-                        </div>
+            <Page title={"Wishlist"} type={null} className="wishlist">
+                <div className="page-inner">
+                    <div className="page-padding">
+                        <h1 className="center"> Wishlist </h1>
                     </div>
-                </div> */}
+                </div>
             </Page>
         </>
     );
