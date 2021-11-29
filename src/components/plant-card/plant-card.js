@@ -134,7 +134,7 @@ export default function PlantCard({ name, ...props }) {
 }
 
 
-const CameraControls = ({ target, position, gamma, beta, ...props }) => {
+const CameraControls = ({ target, position, ...props }) => {
     // Get a reference to the Three.js Camera, and the canvas html element.
     // We need these to setup the OrbitControls component.
     // https://threejs.org/docs/#examples/en/controls/OrbitControls
@@ -145,6 +145,34 @@ const CameraControls = ({ target, position, gamma, beta, ...props }) => {
     // Ref to the controls, so that we can update them on every frame using useFrame
     const controls = useRef();
 
+    const [gamma, setGamma] = useState(0);
+    const [beta, setBeta] = useState(0);
+    const [alpha, setAlpha] = useState(0);
+    const [orientation, setOrientation] = useState(0);
+
+
+    window.addEventListener('deviceorientation', function (e) {
+        let x = e.beta;  // In degree in the range [-180,180], x, 'front to back'
+        let y = e.gamma; // In degree in the range [-90,90], y, 'left to right'
+        let z = e.alpha; // 0-360, z, compass orientation
+
+        // let z = e.alpha * (Math.PI / 180);
+        // let x = e.beta * (Math.PI / 180);
+        // let y = e.gamma * (Math.PI / 180);
+        let ori = window.orientation * (Math.PI / 180);
+
+        // // console.log('x', x);
+        // // console.log('y', y);
+
+        // if (y > 20) y = 20;
+        // if (y < -20) y = -20;
+
+
+        setAlpha(z);
+        setBeta(x);
+        setGamma(y);
+        setOrientation(ori)
+    });
 
 
     useFrame(({ clock, camera }, delta) => {
@@ -176,13 +204,13 @@ const CameraControls = ({ target, position, gamma, beta, ...props }) => {
         // // newPos.z = newPos.z * Math.cos(1) - newPos.z * Math.sin(1);
         // // camera.position.copy(newPos);
 
-        let _gamma = gamma * -1;
-        if (_gamma > 40) _gamma = 40;
-        if (_gamma < -40) _gamma = -40;
+        let _gamma = (gamma * -1) * 3;
+        // if (_gamma > 40) _gamma = 40;
+        // if (_gamma < -40) _gamma = -40;
 
         let g = (_gamma * (Math.PI / 600)) * 1;
 
-        let _beta = beta - 90;
+        let _beta = (beta - 90);
         // if( _beta > 40 ) _beta = 40;
         // if( _beta < -40) _beta = -40;
 
@@ -199,11 +227,11 @@ const CameraControls = ({ target, position, gamma, beta, ...props }) => {
         newPos.x += x * Math.cos(g) + z * Math.sin(g);
         newPos.z += z * Math.cos(g) - x * Math.sin(g);
 
-        newPos.y += y * Math.cos(b) + z * Math.sin(b);
+        // newPos.y += y * Math.cos(b) + z * Math.sin(b);
         // newPos.z += z * Math.cos(b) - y * Math.sin(b);
 
-        camera.position.lerp(newPos, 0.1);
-        // camera.position.copy(newPos);
+        // camera.position.lerp(newPos, 0.1);
+        camera.position.copy(newPos);
 
 
         // controls.current.target.lerp(target, 0.1);
