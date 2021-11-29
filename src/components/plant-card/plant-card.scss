@@ -45,4 +45,19 @@ $height: calc(#{$width} * #{$ratio});
             touch-action: auto !important;
         }
     }
+
+    .debug {
+        position: absolute;
+        z-index: 10;
+        left: 0px;
+        right: 0px;
+        bottom: -30px;
+        background-color: rgba($color: #ff0000, $alpha: 0.9);
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        color: #000000;
+    }
 }
