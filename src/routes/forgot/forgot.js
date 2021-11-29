@@ -40,9 +40,11 @@ export default function Forgot({ ...props }) {
     return (
         <>
             <Page className="page-login" title={"Login"} type={'centered'}>
-                <div className="page-padding">
-                    {/* <p>You must log in to view the page at {from}</p> */}
-                    <Form handleSubmit={handleSubmit} />
+                <div className="page-inner">
+                    <div className="page-padding">
+                        {/* <p>You must log in to view the page at {from}</p> */}
+                        <Form handleSubmit={handleSubmit} />
+                    </div>
                 </div>
             </Page>
         </>
@@ -57,7 +59,7 @@ function Form({ handleSubmit, ...propsprops }) {
 
             <div className="form-group">
                 <label for="username"> Email/Username: </label>
-                <input id="username" name="username" type="text" required/>
+                <input id="username" name="username" type="text" required />
             </div>
             <Button type="submit"> Continue </Button>
             <div className="divider"> </div>

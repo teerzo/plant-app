@@ -15,7 +15,7 @@ export default function Account({ onChange, ...props }) {
     return (
         <>
             <Page title={'Account'} type={null}>
-                <div className="page-padding">
+                <div className="page-inner">
                     <AuthStatus />
 
                     <h1 className="center"> Account </h1>

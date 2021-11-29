@@ -40,9 +40,11 @@ export default function SignUp({ ...props }) {
     return (
         <>
             <Page className="page-login" title={"Login"} type={'centered'}>
-                <div className="page-padding">
-                    {/* <p>You must log in to view the page at {from}</p> */}
-                    <Form handleSubmit={handleSubmit} />
+                <div className="page-inner">
+                    <div className="page-padding">
+                        {/* <p>You must log in to view the page at {from}</p> */}
+                        <Form handleSubmit={handleSubmit} />
+                    </div>
                 </div>
             </Page>
         </>
@@ -57,15 +59,15 @@ function Form({ handleSubmit, ...propsprops }) {
 
             <div className="form-group">
                 <label for="username"> Username: </label>
-                <input id="username" name="username" type="text" required/>
+                <input id="username" name="username" type="text" required />
             </div>
             <div className="form-group">
                 <label for="password"> Password: </label>
-                <input id="password" name="password" type="text" required/>
+                <input id="password" name="password" type="text" required />
             </div>
             <div className="form-group">
                 <label for="password2"> Confirm Password: </label>
-                <input id="password2" name="password2" type="text" required/>
+                <input id="password2" name="password2" type="text" required />
             </div>
             <Button type="submit"> Sign Up </Button>
             <div className="divider"> </div>

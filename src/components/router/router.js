@@ -21,6 +21,7 @@ import Forgot from 'routes/forgot';
 
 // Private Routes
 import Account from 'routes/account';
+import Plant from 'routes/plant';
 import Plants from 'routes/plants';
 import Wishlist from 'routes/wishlist';
 // import Collection from './collection';
@@ -54,6 +55,7 @@ export default function Router() {
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/plants" element={<Plants />} />
+                        <Route path="/plants/:id" element={<Plant />} />
                         <Route path="/wishlist" element={<Wishlist />} />
                         <Route path="/account" element={
                             <PrivateRoute>

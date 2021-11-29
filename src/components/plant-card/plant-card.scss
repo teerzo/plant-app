@@ -41,7 +41,8 @@ $height: calc(#{$width} * #{$ratio});
         border: 5px solid #b2e097;
         // padding: 5px;
 
-        .canvas {
+        canvas {
+            touch-action: auto !important;
         }
     }
 }
