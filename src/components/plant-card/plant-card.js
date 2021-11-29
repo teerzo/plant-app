@@ -174,6 +174,9 @@ const CameraControls = ({ target, position, ...props }) => {
         // newPos.z = newPos.z * Math.cos(1) - newPos.z * Math.sin(1);
         // camera.position.copy(newPos);
 
+        if( gamma > 40 ) gamma = 40;
+        if( gamma < -40) gamma = -40;
+
         const _gamma = (gamma * (Math.PI / 600) )*1;
 
         var x = position.x,
